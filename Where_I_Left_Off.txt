@@ -1,0 +1,7 @@
+﻿I was trying to create a multiplying function.
+
+I'm thinking that I maybe should use a derived class that holds onto the different units as you do operations on them.
+And then it will only try to reduce the unit when it is called to be printed.
+
+I'm not sure though.
+

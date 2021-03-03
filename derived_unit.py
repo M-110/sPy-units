@@ -3,8 +3,8 @@ from base_unit_enums import set_dimensions, BaseUnit
 
 
 def create_custom_derived_unit(unit1: BaseUnit, unit2: BaseUnit):
-    new_unit = BaseUnit('CustomUnit', [('BaseCustomMultiplier', (1, 'M^2', 'square meter', 'square meter'))])
-    return new_unit('M^2')
+    new_unit = BaseUnit('CustomUnit', [('square_meter', (1, 'M^2', 'square meter', 'square meter'))])
+    return new_unit
 
 
 class DerivedUnit(BaseUnit):

@@ -18,9 +18,6 @@ si_units = (
 
 def set_dimensions(mass=0, length=0, time=0, current=0, temperature=0, amount=0, luminous_intensity=0, angle=0):
     def dimension_decorator(unit_enum):
-        unit_enum.dimensions = {'time': time, 'length': length, 'mass': mass, 'current': current,
-                                'temperature': temperature, 'amount': amount, 'luminous_intensity': luminous_intensity,
-                                'angle': angle}
         unit_enum.dimensions = Dimension(time=time, length=length, mass=mass, current=current, temperature=temperature,
                                          amount=amount, luminous_intensity=luminous_intensity, angle=angle)
         unit_registry.add(unit_enum.dimensions, unit_enum)
@@ -331,5 +328,6 @@ class LuminousIntensity(BaseUnit):
     candlepower = (0.981, 'cp', 'candlepower')
     violle = (20.17, 'violle', 'violle')
 
-for key, value in unit_registry.registry.items():
-    print(key, value)
+if __name__ == "__main__":
+    for key, value in unit_registry.registry.items():
+        print(key, value)

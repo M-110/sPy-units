@@ -1,4 +1,4 @@
-﻿from base_unit_enums import BaseUnit, Length, Time
+﻿from base_unit_enums import BaseUnit, Length, Time, Dimension
 import base_unit_enums
 import derived_unit
 import unit_registry
@@ -41,30 +41,37 @@ class Unit:
             result = self.quantity - self.unit.convert(other.quantity, other.unit)
 
         return Unit(result, self.unit)
-    
+
     def __mul__(self, other):
+        new_dimension = Dimension(*(a + b for a, b in zip(self.unit.dimensions, other.unit.dimensions)))
+        if new_dimension in unit_registry.registry:
+            print("It's in there")
+        return new_dimension
         if not isinstance(other, BaseUnit):
             return NotImplemented
         
-
+    #def get_base_form(self) -> :
+        
+    
     def convert_to(self, new_unit: BaseUnit):
         return Unit(new_unit.convert(self.quantity, self.unit), new_unit)
 
 
-a = Unit(5000, Length.meter)
-b = Unit(3, Length.kilometer)
+if __name__ == "__main__":
+    a = Unit(5000, Length.meter)
+    b = Unit(3, Length.kilometer)
 
-c = Unit(1, Time.hour)
-d = Unit(3, Time.hour)
+    c = Unit(1, Time.hour)
+    d = Unit(3, Time.hour)
 
-e = a.convert_to(Length.decameter)
+    e = a.convert_to(Length.decameter)
 
-print(e)
+    print(e)
 
-print(a - b)
-print(b - b)
+    print(a - b)
+    print(b - b)
 
-print(c - d)
-print(c - c)
+    print(c - d)
+    print(c - c)
 
-print(unit_registry.registry.items())
+    print(unit_registry.registry.items())
